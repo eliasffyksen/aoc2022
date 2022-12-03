@@ -33,28 +33,19 @@ pub fn p1(input: String) -> u64 {
 
 pub fn p2(input: String) -> i32 {
   let mut sum = 0;
-  let mut group_mask = 0;
+  let mut group_mask = u64::MAX;
+
   for (i, line) in input.trim().split("\n").enumerate() {
-    let mut elf_mask: u64 = 0;
+    group_mask &= line.bytes()
+      .map(|b| (1 as u64) << getpri(b))
+      .reduce(|map, v| (map | v)).unwrap();
 
-    for b in line.bytes() {
-      elf_mask |= 1 << getpri(b)
-    }
-
-    if i % 3 == 0 {
-      group_mask = elf_mask;
-    } else {
-      group_mask &= elf_mask;
-
-      if i % 3 == 2 {
-        for j in 0..53 {
-          if group_mask == 1 {
-            sum += j;
-            break;
-          }
-          group_mask >>= 1;
-        }
+    if i % 3 == 2 {
+      while group_mask > 1 {
+        sum += 1;
+        group_mask >>= 1;
       }
+      group_mask = u64::MAX;
     }
   }
   sum

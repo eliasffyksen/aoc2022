@@ -7,6 +7,15 @@ fn getpri(b: u8) -> u8 {
   }
 }
 
+fn whatbit(mut mask: u64) -> i32 {
+  let mut sum = 0;
+  while mask > 1 {
+    sum += 1;
+    mask >>= 1;
+  }
+  sum
+}
+
 pub fn p1(input: String) -> u64 {
   input.trim().split("\n")
     .map(|line| {
@@ -32,21 +41,12 @@ pub fn p1(input: String) -> u64 {
 }
 
 pub fn p2(input: String) -> i32 {
-  let mut sum = 0;
-  let mut group_mask = u64::MAX;
-
-  for (i, line) in input.trim().split("\n").enumerate() {
-    group_mask &= line.bytes()
-      .map(|b| (1 as u64) << getpri(b))
-      .reduce(|map, v| (map | v)).unwrap();
-
-    if i % 3 == 2 {
-      while group_mask > 1 {
-        sum += 1;
-        group_mask >>= 1;
-      }
-      group_mask = u64::MAX;
-    }
-  }
-  sum
+  input.trim().lines()
+    .array_chunks::<3>()
+    .map(|group| group.iter()
+      .map(|elf| elf.bytes()
+        .map(|b| (1 as u64) << getpri(b))
+        .reduce(|elf, c| elf | c).unwrap()
+      ).reduce(|group, elf| (group & elf)).unwrap()
+    ).map(whatbit).sum::<i32>()
 }

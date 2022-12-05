@@ -1,13 +1,12 @@
 #![feature(iter_array_chunks)]
 
-use std::fs::read_to_string;
+use std::{fs::read_to_string,};
 
-pub mod day2;
-pub mod day3;
-pub mod day4;
+pub mod day5;
+
 
 fn main() {
-    println!("{:?}", day4::p2(
-        read_to_string("./data/day4.txt").unwrap()
+    println!("{:?}", day5::p2(
+        read_to_string("./data/day5.txt").unwrap()
     ));
 }

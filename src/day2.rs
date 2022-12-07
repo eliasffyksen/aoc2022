@@ -1,6 +1,7 @@
-use std::fs::read_to_string;
+use std::{fs::read_to_string, rc::Rc, cell::RefCell};
 
-pub fn p1() -> i32 {
+
+pub fn p() -> i32 {
   read_to_string("./data/day2.txt").unwrap()
     .trim()
     .split("\n")

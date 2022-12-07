@@ -1,3 +1,6 @@
+
+pub const DATA_PATH: &str = "data/day5.txt";
+
 fn parse_input(input: &String) -> (Vec<Vec<char>>, usize) {
   let mut piles: Vec<Vec<char>> = Vec::new();
   let mut line_start: usize = 0;

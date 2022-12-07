@@ -1,4 +1,6 @@
 
+pub const DATA_PATH: &str = "data/day6.txt";
+
 pub fn p1(input: String) -> i32 {
   let mut dups = 0;
   let mut buffer = String::new();

@@ -2,33 +2,17 @@
 
 use std::fs::read_to_string;
 
-pub mod day7;
-use day7 as day;
+pub mod day8;
+use day8 as day;
 
 fn main() {
-    let input_test = "$ cd /
-$ ls
-dir a
-14848514 b.txt
-8504156 c.dat
-dir d
-$ cd a
-$ ls
-dir e
-29116 f
-2557 g
-62596 h.lst
-$ cd e
-$ ls
-584 i
-$ cd ..
-$ cd ..
-$ cd d
-$ ls
-4060174 j
-8033020 d.log
-5626152 d.ext
-7214296 k".to_string();
+    let input_test = "
+30373
+25512
+65332
+33549
+35390
+    ".to_string();
 
     let input_real = read_to_string(day::DATA_PATH).unwrap();
 

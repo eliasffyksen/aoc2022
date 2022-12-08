@@ -2,8 +2,8 @@
 
 use std::fs::read_to_string;
 
-pub mod day8;
-use day8 as day;
+pub mod day8_alt;
+use day8_alt as day;
 
 fn main() {
     let input_test = "

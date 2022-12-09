@@ -2,16 +2,19 @@
 
 use std::fs::read_to_string;
 
-pub mod day8_alt;
-use day8_alt as day;
+pub mod day9;
+use day9 as day;
 
 fn main() {
     let input_test = "
-30373
-25512
-65332
-33549
-35390
+R 4
+U 4
+L 3
+D 1
+R 4
+D 1
+L 5
+R 2
     ".to_string();
 
     let input_real = read_to_string(day::DATA_PATH).unwrap();
